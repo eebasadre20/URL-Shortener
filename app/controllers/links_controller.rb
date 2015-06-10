@@ -4,7 +4,7 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    @links = Link.all
+    @link = Link.new
   end
 
   # GET /links/1
@@ -28,7 +28,9 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.save
-        format.html { redirect_to @link, notice: 'Link was successfully created.' }
+         link = { code: @link.code,
+                  id: @link.id }
+        format.html { redirect_to links_path, notice: link }
         format.json { render :show, status: :created, location: @link }
       else
         format.html { render :new }
@@ -58,6 +60,16 @@ class LinksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to links_url, notice: 'Link was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def check_url
+    link = Link.find_by_code(params[:id])
+
+    if link
+      redirect_to link.given_url
+    else
+      render :index
     end
   end
 

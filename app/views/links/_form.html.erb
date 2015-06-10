@@ -1,4 +1,8 @@
-<%= form_for(@link) do |f| %>
+
+<div class="form-panel">
+  <h1>URL Shortener</h1>
+  
+  <%= form_for(@link) do |f| %>
   <% if @link.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
@@ -11,19 +15,15 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :given_url %><br>
-    <%= f.text_field :given_url %>
+  <div class="input-panel">
+     <div class="field">
+      <%= f.text_field :given_url, class: 'input-field', placeholder: 'Enter your URL' %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Shorten", class: 'button' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :uuid %><br>
-    <%= f.text_field :uuid %>
-  </div>
-  <div class="field">
-    <%= f.label :code %><br>
-    <%= f.text_field :code %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+   
+  <% end %>
+</div>
+

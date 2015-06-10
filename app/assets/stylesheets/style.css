@@ -1,0 +1,19 @@
+.form-panel {
+  margin: 0 auto 0;
+  width: 600px;
+}
+
+.input-panel {
+  display: flex;
+}
+
+#link_given_url {
+  width: 350px;
+  padding: 15px 26px;
+}
+
+.button {
+  margin-left: 10px;
+  padding: 15px;
+  width: 100px;
+}
