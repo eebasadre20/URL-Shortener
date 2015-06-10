@@ -1,6 +1,6 @@
 class Link < ActiveRecord::Base
 	before_save :generate_uuid, on: :create
-	url_regex = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
+	url_regex = /\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix
 	validates :given_url, presence: true, format: { with: url_regex }
 
 	protected 
