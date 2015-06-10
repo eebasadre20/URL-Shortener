@@ -1,8 +1,2 @@
-<% if flash[:notice] %>
-  <% flash[:notice].each do |key, msg| %>
-   <p> You shorten url  <%= link_to msg, check_url_link_path(msg) %></p>
-  <% end %>
-<% end %>
-
 <%= render 'form' %>
 

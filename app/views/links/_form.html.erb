@@ -1,7 +1,11 @@
 
 <div class="form-panel">
   <h1>URL Shortener</h1>
-  
+
+  <% if flash[:code] %>
+    <p> Your URL Shorten  <%= link_to flash[:code], check_url_link_path(flash[:uuid]) %></p>
+  <% end %>
+
   <%= form_for(@link) do |f| %>
   <% if @link.errors.any? %>
     <div id="error_explanation">
@@ -17,7 +21,7 @@
 
   <div class="input-panel">
      <div class="field">
-      <%= f.text_field :given_url, class: 'input-field', placeholder: 'Enter your URL' %>
+      <%= f.url_field :given_url, class: 'input-field', placeholder: 'Enter your URL' %>
     </div>
     <div class="actions">
       <%= f.submit "Shorten", class: 'button' %>

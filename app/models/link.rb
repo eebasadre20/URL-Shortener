@@ -1,6 +1,7 @@
 class Link < ActiveRecord::Base
 	before_save :generate_uuid, on: :create
-	after_save :get_shorten, on: :create
+	url_regex = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
+	validates :given_url, presence: true, format: { with: url_regex }
 
 	protected 
 
@@ -13,10 +14,7 @@ class Link < ActiveRecord::Base
 	end
 
 	def generate_code( id )
-		self.code = 'http://localhost:3000/' + Base64.urlsafe_encode64( id.to_s ).slice(0..6)
+		self.code = Base64.urlsafe_encode64( id.to_s ).slice(0..6)
 	end
 
-	def get_shorten
-		Link.last
-	end
 end

@@ -5,6 +5,7 @@ class LinksController < ApplicationController
   # GET /links.json
   def index
     @link = Link.new
+    @latest = Link.last
   end
 
   # GET /links/1
@@ -28,12 +29,13 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.save
-         link = { code: @link.code,
-                  id: @link.id }
-        format.html { redirect_to links_path, notice: link }
+        # link = { code: @link.code,
+                  #id: @link.id }
+        format.html { redirect_to links_path, flash: { code: 'http://localhost:3000/' + @link.code,
+                  uuid: @link.uuid } }
         format.json { render :show, status: :created, location: @link }
       else
-        format.html { render :new }
+        format.html { render :index }
         format.json { render json: @link.errors, status: :unprocessable_entity }
       end
     end
@@ -64,7 +66,17 @@ class LinksController < ApplicationController
   end
 
   def check_url
-    link = Link.find_by_code(params[:id])
+    link = Link.find_by_uuid(params[:id])
+
+    if link
+      redirect_to link.given_url
+    else
+      render :index
+    end
+  end
+
+  def redirect
+    link = Link.find_by_code(params[:url])
 
     if link
       redirect_to link.given_url
