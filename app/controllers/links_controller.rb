@@ -10,7 +10,7 @@ class LinksController < ApplicationController
     respond_to do |format|
       if @link.save
 
-        format.html { redirect_to links_path, flash: { code: 'http://localhost:3000/' + @link.code,
+        format.html { redirect_to links_path, flash: { code: 'http://128.199.108.161/' + @link.code,
                   id: @link.code } }
         format.json { render :show, status: :created, location: @link }
       else
