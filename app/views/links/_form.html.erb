@@ -1,9 +1,9 @@
 
 <div class="form-panel">
-  <h1>URL Shortener</h1>
+  <h1 class="title">URL Shortener</h1>
 
   <% if flash[:code] %>
-    <p> Your URL Shorten  <%= link_to flash[:code], check_url_link_path(flash[:uuid]) %></p>
+    <p class="link"> Your URL Shorten : <%= link_to flash[:code], redirect_url_path(flash[:id]) %></p>
   <% end %>
 
   <%= form_for(@link) do |f| %>
@@ -29,5 +29,10 @@
   </div>
    
   <% end %>
+
+  <div class="footer">
+    <p> A simple URL Shortener by : <span> Edsil Basadre </span> </p>
+  </div>
 </div>
+
 

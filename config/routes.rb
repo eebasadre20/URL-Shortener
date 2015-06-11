@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
 
 
-  get '/:url' => 'links#redirect'
+  get '/:url' => 'links#redirect', as: 'redirect_url'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -17,3 +17,29 @@
   padding: 15px;
   width: 100px;
 }
+
+.title {
+  color: rgb(202, 93, 14);
+  margin-bottom: 45px;
+  margin-left: 135px;
+  display: inline-block;
+}
+
+.footer {
+  width: 400px;
+  margin: 30px auto 0;
+}
+
+.footer > p {
+  color: rgb(145, 102, 67);
+}
+
+p > span {
+  color: rgb(113, 68, 8);
+  font-weight: bold;
+}
+
+.link > a {
+  font-weight: bold;
+  color: rgb(36, 42, 160);
+}
